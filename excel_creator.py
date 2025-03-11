@@ -1,10 +1,8 @@
 from xlutils.copy import copy
 from xlrd import open_workbook
 
-import xlwt
-import xlrd
 
-combinations = {"2023": list(range(7, 13)), "2024": list(range(1, 3))}
+combinations = {"2024": list(range(1, 13)), "2025": list(range(1, 4))}
 
 # load excel file
 rb = open_workbook(filename="excels/FACTURA_PIS_703.xls", formatting_info=True)

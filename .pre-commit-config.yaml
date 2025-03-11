@@ -1,0 +1,26 @@
+---
+repos:
+    - repo: local
+      hooks:
+          - id: black
+            name: black
+            entry: poetry run black
+            language: system
+            types: [python]
+          - id: flake8
+            name: flake8
+            entry: poetry run flake8
+            language: system
+            types: [python]
+    #       - id: pytest
+    #         name: pytest
+    #         entry: poetry run pytest tests/
+    #         language: system
+    #         files: src/
+    #         stages: [push]
+    #         always_run: true
+    # - repo: https://github.com/adrienverge/yamllint.git
+    #   rev: v1.21.0
+    #   hooks:
+    #       - id: yamllint
+    #         entry: yamllint -c yamlint.yaml
