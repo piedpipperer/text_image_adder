@@ -10,6 +10,7 @@ python = "^3.11"
 Pillow = "^9.4.0"
 openpyxl = "^3.1.2"
 xlutils = "^2.0.0"
+ipykernel = "^6.29.5"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.21.2"
