@@ -6,7 +6,7 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 Pillow = "^9.4.0"
 openpyxl = "^3.1.2"
 xlutils = "^2.0.0"
@@ -16,6 +16,7 @@ ipykernel = "^6.21.2"
 pre-commit = "^4.1.0"
 black = "^25.1.0"
 flake8 = "^7.1.2"
+pytest = "^8.3.5"
 
 
 [build-system]
