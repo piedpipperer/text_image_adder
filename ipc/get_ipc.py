@@ -6,8 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-def get_ipc(year):
-    url = f"https://www.estadistica.ad/portal/apps/sites/#/estadistica-ca/pages/estadistiques-i-dades-detall?Idioma=ca&N2=303&N3=16&DV=629&From={year}&To={year}&Var=Cap"
+def get_ipc(year: int) -> float:
+    base_url = "https://www.estadistica.ad/portal/apps/sites/#/estadistica-ca/pages/estadistiques-i-dades-detall"
+    query_params = f"?Idioma=ca&N2=303&N3=16&DV=629&From={year}&To={year}&Var=Cap"
+    url = f"{base_url}{query_params}"
     options = Options()
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
@@ -24,21 +26,20 @@ def get_ipc(year):
         data_cell = WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, f'td.tdDatos[data-field="A_{year}"]'))
         )
-        ipc = float(data_cell.text.strip().replace("%", "").replace(",", ".")) / 100
+        ipc = round(float(data_cell.text.strip().replace("%", "").replace(",", ".")), 4) / 100
     except Exception as e:
-        print("❌ Something went wrong:", e)
-        ipc = None
+        raise Exception("❌ Something went wrong:", e)
     finally:
         driver.quit()
     return ipc
 
 
-get_ipc(2023)
-
-
-def calculate_compound_interest(year1, year2):
-    compound_interest = 100 * (1 + get_ipc(year1)) * (1 + get_ipc(year2)) - 100
+def calculate_compound_interest(year1: int, year2: int) -> float:
+    compound_interest = round(100 * (1 + get_ipc(year1)) * (1 + get_ipc(year2)) - 100, 4)
     return compound_interest
 
 
-calculate_compound_interest(2023, 2024)
+if __name__ == "__main__":
+    year1 = 2023
+    year2 = 2024
+    print(f"Compound interest from {year1} to {year2}: {calculate_compound_interest(year1, year2)}%")
