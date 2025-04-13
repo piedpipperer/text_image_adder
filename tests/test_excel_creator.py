@@ -1,6 +1,5 @@
 from excel_creator import generate_invoices
 import os
-import subprocess
 
 # 1 - basic test to check if the function runs without errors (no file created):
 # def test_generate_invoices():
