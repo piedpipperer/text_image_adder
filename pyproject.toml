@@ -10,6 +10,8 @@ python = "^3.10"
 Pillow = "^9.4.0"
 openpyxl = "^3.1.2"
 xlutils = "^2.0.0"
+speechrecognition = "^3.14.3"
+pydub = "^0.25.1"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.21.2"
