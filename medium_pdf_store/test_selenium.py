@@ -10,13 +10,20 @@ from pathlib import Path
 from medium_pdf_store.selenium.find_articles import get_articles
 
 BASE_FOLDER = Path("/home/jrojo/Dropbox/useful_mediums/")
+# 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
 
 # # ⚡ Connect to the running Chrome with remote debugging
 debugger_address = "127.0.0.1:9222"
 chrome_options = webdriver.ChromeOptions()
 chrome_options.debugger_address = debugger_address
 driver = webdriver.Chrome(options=chrome_options)
+
+# best list:
 original_article_urls = [url for url in get_articles(driver) if url.startswith('https://medium.com/')]
+
+# in case is the pending list: 
+# original_article_urls = [url for url in get_articles(driver, url="https://medium.com/@jordirojo/list/pending-2edc05a5e029") if url.startswith('https://medium.com/')]
+
 
 # remove the author if applies:
 article_names = [re.sub(r'^@[^/]+/', '', url.replace('https://medium.com/', '')) for url in original_article_urls]  # Remove author prefix
@@ -27,7 +34,7 @@ article_names = [re.sub(r'-[0-9a-f]{12}$', '', url) for url in article_names]  #
 # in addition to this regex. we need also to remove any character that might not be accepted as for a file name:
 article_names = [re.sub(r'[<>:"/\\|?*]+', '_', name) for name in article_names]  # Replace invalid characters with underscore
 
-       
+
 for art_index, url in enumerate(original_article_urls):
     file_name = f"{article_names[art_index]}.pdf"
     output = BASE_FOLDER / f"{datetime.now().year}/{file_name}"
