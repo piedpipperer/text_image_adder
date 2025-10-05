@@ -1,1 +1,6 @@
+
+# linux command to execute chrome for selenium:
 google-chrome   --remote-debugging-port=9222   --user-data-dir="/home/jrojo/.config/chrome-remote"   --no-first-run &
+
+# windows way: (From vscode)
+Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" -ArgumentList '--remote-debugging-port=9222','--user-data-dir="C:\Users\Usuario\AppData\Local\Google\test_Chrome"'
